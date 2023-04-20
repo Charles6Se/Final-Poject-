@@ -9,7 +9,8 @@ def lookup():
     try:
         # api_key = os.environ.get("API_KEY")
         # url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
-
+        
+        # Don't need API Key for this
         url = f"https://api.openopus.org/composer/list/search/bruc.json"
 
         response = requests.get(url)
