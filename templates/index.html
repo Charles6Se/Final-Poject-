@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <!--There is no method specified. it should be ok
+    Will leave div class mb3 for now-->
+    <form action="/" method="get">
+        <div class="row justify-content-center">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Shares</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--Last two are straight list here. trying to go through each since there all same length-->
+                    <!--totals|length gives its length. batch should make a new row every 5 items | batch(5, '&nbsp;'-->
+                    {% for i in range(0, symbol|length) %}
+                    <tr>
+                        <td class="td">{{ symbol[i]["symbol"] }}</td>
+                        <td>{{ name[i]["name"] }}</td>
+                        <td>{{ share_count[i]["SUM(number_shares)"] }}</td>
+                        <td>{{ live_prices[i]|usd }}</td>
+                        <td>{{ value_of_stock[i]|usd }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Cash</b></td>
+                        <td>{{ cash_on_hand }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        {% if tru == True %}
+                            <td>Ships from nearby</td>
+                        {% endif %}
+                        <td><b>TOTAL</b></td>
+                        <td>{{ money }}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+{% endblock %}
